@@ -16,7 +16,7 @@ class FileController {
         files.name = request.input('name')
         files.description = request.input('description')
         if (attachment !== null) {
-            files.file = `${new Date().getTime()}.${attachment.subtype}`
+            files.file = `http://appexperiment.herokuapp.com/upload/files/${new Date().getTime()}.${attachment.subtype}`
             await attachment.move(Helpers.publicPath('upload/files'), {
                 name: files.file
             })
