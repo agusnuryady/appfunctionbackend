@@ -46,7 +46,7 @@ class FileController {
         const attachment = request.file('file')
         const {name, description, file}  = request.all()
         if (attachment !== null) {
-            file = `http://appexperiment.herokuapp.com/upload/files/${new Date().getTime()}.${attachment.subtype}`
+            file = `${new Date().getTime()}.${attachment.subtype}`
             await attachment.move(Helpers.publicPath('upload/files'), {
                 name: file
             })
