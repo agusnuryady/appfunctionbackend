@@ -57,8 +57,11 @@ class FileController {
         return response.json(updated)
     }
 
-    async delete({params, response}) {
+    async delete({params, request, response}) {
         const id = params.id
+        const uri = request.input('uri')
+        const fs = Helpers.promisify(require('fs'))
+        await fs.unlink(Helpers.publicPath(`upload/files/${uri}`))
         await File.query().where('id',id).delete()
         return response.send({message:'file has ben deleted'})
     }
