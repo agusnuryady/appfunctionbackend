@@ -72,7 +72,7 @@ class FileController {
 
     async download({params, response}) {
         const uri = params.uri
-        return response.download(Helpers.publicPath(`upload/files/${uri}`))
+        return response.attachment(Helpers.publicPath(`upload/files/${uri}`))
     }
 
 }
