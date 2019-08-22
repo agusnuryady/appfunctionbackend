@@ -24,5 +24,6 @@ Route.group(() => {
     Route.patch('file/update/:id', 'FileController.update')
     Route.delete('file/delete/:id', 'FileController.delete')
     Route.delete('file/clean', 'FileController.clean')
+    Route.get('file/download/:uri', 'FileController.download')
 
 }).prefix('api/v1')

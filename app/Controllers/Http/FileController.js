@@ -40,7 +40,6 @@ class FileController {
         return response.json(files)
     }
     
-
     async update({params, request, response}) {
         const id = params.id
         const attachment = request.file('file')
@@ -69,6 +68,11 @@ class FileController {
     async clean({response}) {
         await File.query().select('*').delete()
         return response.send({message:'all file has ben deleted'})
+    }
+
+    async download({params, response}) {
+        const uri = params.uri
+        return response.attachment(Helpers.publicPath(`upload/files/${uri}`))
     }
 
 }
