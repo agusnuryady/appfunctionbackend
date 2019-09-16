@@ -22,7 +22,7 @@ Route.group(() => {
     Route.get('file/read/:id', 'FileController.read')
     Route.post('file/create', 'FileController.create')
     Route.patch('file/update/:id', 'FileController.update')
-    Route.delete('file/delete/:uri&:id', 'FileController.delete')
+    Route.delete('file/delete/:id', 'FileController.delete')
     // Route.delete('file/dataDelete/:id', 'FileController.dataDelete')
     Route.delete('file/clean', 'FileController.clean')
     Route.get('file/download/:uri', 'FileController.download')
