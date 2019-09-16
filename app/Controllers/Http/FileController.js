@@ -59,23 +59,17 @@ class FileController {
 
     async delete({params, response}) {
         const id = params.id
-        const uri = await File.query().select('file').where('id',id)
+        const uri = await File.query().select('file').where('id',id).first()
         const fs = Helpers.promisify(require('fs'))
-        if (uri==="") {
+        const file = uri.file
+        if (file==="") {
             await File.query().where('id',id).delete()
         } else {
-            await fs.unlink(Helpers.publicPath(`upload/files/${uri}`))
+            await fs.unlink(Helpers.publicPath(`upload/files/${file}`))
             await File.query().where('id',id).delete()
         }
-        // await File.query().where('file',uri).delete()
         return response.send({message:'data file has ben deleted'})
     }
-
-    // async dataDelete({params, response}) {
-    //     const id = params.id
-    //     await File.query().where('id',id).delete()
-    //     return response.send({message:'data has ben deleted'})
-    // }   
 
     async clean({response}) {
         await File.query().select('*').delete()
