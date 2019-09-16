@@ -5,8 +5,9 @@ const Helpers = use('Helpers')
 
 class FileController {
 
-    async shows({response}) {
-        const files = await File.query().select('*').fetch()
+    async shows({params, response}) {
+        const page = params.page
+        const files = await File.query().select('*').orderBy('id','desc').paginate(page,5)
         return response.json(files)
     }
 
@@ -58,11 +59,19 @@ class FileController {
 
     async delete({params, response}) {
         const uri = params.uri
+        const id = params.id
         const fs = Helpers.promisify(require('fs'))
         await fs.unlink(Helpers.publicPath(`upload/files/${uri}`))
-        await File.query().where('file',uri).delete()
-        return response.send({message:'file has ben deleted'})
+        // await File.query().where('file',uri).delete()
+        await File.query().where('id',id).delete()
+        return response.send({message:'data file has ben deleted'})
     }
+
+    // async dataDelete({params, response}) {
+    //     const id = params.id
+    //     await File.query().where('id',id).delete()
+    //     return response.send({message:'data has ben deleted'})
+    // }   
 
     async clean({response}) {
         await File.query().select('*').delete()
