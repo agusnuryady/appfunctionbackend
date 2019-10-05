@@ -11,6 +11,7 @@
 |
 */
 const providers = [
+  '@adonisjs/websocket/providers/WsProvider',
   '@adonisjs/framework/providers/AppProvider',
   '@adonisjs/framework/providers/ViewProvider',
   '@adonisjs/lucid/providers/LucidProvider',
@@ -46,7 +47,9 @@ const aceProviders = [
 |   { Route: 'Adonis/Src/Route' }
 |
 */
-const aliases = {}
+const aliases = {
+  Ws: 'Adonis/Addons/Ws'
+}
 
 /*
 |--------------------------------------------------------------------------

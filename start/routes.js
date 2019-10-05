@@ -27,4 +27,8 @@ Route.group(() => {
     Route.delete('file/clean', 'FileController.clean')
     Route.get('file/download/:uri', 'FileController.download')
 
+    Route.post('location/create', 'LocationController.create')
+    Route.get('location/shows', 'LocationController.shows')
+    Route.get('location/nearby/:latitude/:longitude', 'LocationController.nearby')
+
 }).prefix('api/v1')
