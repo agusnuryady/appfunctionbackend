@@ -1,7 +1,8 @@
 'use strict'
 
 class ChatController {
-  constructor ({ socket, request }) {
+  constructor (params) {
+    const { socket, request } = params
     this.socket = socket
     this.request = request
 
@@ -13,7 +14,7 @@ class ChatController {
     //~ this.socket.broadcastToAll('message', message)
     console.log('got message', message)
     // sebaliknya
-    this.socket.broadcast('message', message)
+    // this.socket.broadcast('message', message)
   }
 
   onClose () {

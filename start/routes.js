@@ -31,4 +31,9 @@ Route.group(() => {
     Route.get('location/shows', 'LocationController.shows')
     Route.get('location/nearby/:latitude/:longitude', 'LocationController.nearby')
 
+    Route.get('rooms', 'RoomController.shows')
+    Route.post('room/create', 'RoomController.create')
+    Route.get('room/:id', 'RoomController.select')
+    Route.post('message/:id', 'RoomController.createMessage')
+
 }).prefix('api/v1')
