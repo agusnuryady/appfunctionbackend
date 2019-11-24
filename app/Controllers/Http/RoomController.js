@@ -38,7 +38,10 @@ class RoomController {
     }
     
     async createMessage ({ params, request, response }) {
-        const room = await Room.find(params.id);
+        const room = await Room
+        .query()
+        .where('uuid', params.id)
+        .first();
         if (!room) {
         return response.notFound(`The room doesn't exist`)
         }
